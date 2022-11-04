@@ -1,0 +1,33 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.sidebar__menu {
+    width: 306px;
+}
+.menu__container {
+    display: flex;
+    align-items: center;
+
+    color: #80858B;
+}
+.menu__container:not(:last-child) {
+    margin-bottom: 40px;
+}
+.menu__container:active {
+    color: #7B61FF;
+}
+.menu__title {
+    margin-left: 20px;
+
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    cursor: pointer;
+}
+.sidebar__copyright {
+    font-size: 16px;
+    line-height: 24px;
+    color: #AFB2B6;
+}

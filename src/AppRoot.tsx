@@ -2,8 +2,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
-import './index.css'; // глобальные стили
 import './assets/fonts/fonts.css'; // шрифты
+import './index.css'; // глобальные стили
 
 import { AppLayout } from './layout/';
 import { store } from './store';

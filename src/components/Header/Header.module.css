@@ -1,0 +1,49 @@
+.header {
+    height: 152px;
+}
+.header__container {
+    height: 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-top: 40px;
+}
+.header__searchContainer {
+    width: 1489px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header__privateArea {
+    width: 189px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.privateArea__iconName {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0.05em;
+    color: #fff;
+
+    background-color: #7B61FF;
+    border-radius: 10px;
+}
+.privateArea__name {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+
+    color: #242426;
+}
+.header__chevronDown {
+    color: #AFB2B6;
+}

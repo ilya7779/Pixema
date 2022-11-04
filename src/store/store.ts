@@ -14,4 +14,4 @@ export const store = createStore(rootReducer, composeWithDevTools(
   // devToolsEnhancer(),
 ));
 
-export const Dispatch = useDispatch();
+// export const Dispatch = useDispatch();

@@ -1,0 +1,48 @@
+.film__card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.filmCard__film {
+    width: 266px;
+    height: 433px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 40px;
+
+    font-size: 16px;
+    line-height: 24px;
+}
+.filmCard__film:last-child {
+    margin-bottom: 64px;
+}
+.filmCard__photo {
+    width: 226px;
+    height: 317px;
+    padding: 20px;
+
+    background-image: url('./../../assets/image/Rectangle 1.png');
+}
+.photo__rating {
+    width: 37px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 600;
+    color: #fff;
+    background-color: #00A340;
+    border-radius: 6px;
+}
+.filmCard__title {
+    padding-bottom: 4px;
+
+    font-weight: 700;
+    color: #242426;
+}
+.filmCard__authors {
+    font-weight: 500;
+    color: #AFB2B6;
+}

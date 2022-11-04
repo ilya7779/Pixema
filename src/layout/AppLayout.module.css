@@ -1,3 +1,11 @@
 .app__wrapper {
+    max-width: 1796px;
+
+    padding: 0 62px;
     margin: 0 auto;
+
+    font-weight: 500;
+}
+.app__main {
+    display: flex;
 }
