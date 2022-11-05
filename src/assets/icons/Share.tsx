@@ -13,17 +13,17 @@ export const Share: FC<SVGProps<SVGSVGElement>> = (props) => {
     >
       <circle cx="7.54545" cy="11.6363" r="2.54545"
               stroke="currentColor"
-              stroke-width="2"/>
+              strokeWidth="2"/>
       <circle cx="16.4544" cy="6.54545" r="2.54545"
               stroke="currentColor"
-              stroke-width="2"/>
+              strokeWidth="2"/>
       <circle cx="16.4544" cy="16.7273" r="2.54545"
               stroke="currentColor"
-              stroke-width="2"/>
+              strokeWidth="2"/>
       <path d="M14 16L10.0911 13.5455M10.0911 10.5L14 8"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"/>
+            strokeWidth="2"
+            strokeLinecap="round"/>
     </svg>
 
   );

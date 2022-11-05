@@ -13,8 +13,8 @@ export const IconSearch: FC<SVGProps<SVGSVGElement>> = (props) => {
     >
       <path d="M5 6L19 6M10 12H19M14 18H19"
             stroke="#AFB2B6"
-            stroke-width="2"
-            stroke-linecap="round"/>
+            strokeWidth="2"
+            strokeLinecap="round"/>
     </svg>
   );
 };

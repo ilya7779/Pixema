@@ -1,12 +1,12 @@
-import {applyMiddleware, combineReducers, createStore} from 'redux';
+import {AnyAction, applyMiddleware, combineReducers, createStore} from 'redux';
 import {composeWithDevTools} from '@redux-devtools/extension';
-import thunk from 'redux-thunk'
+import thunk, {ThunkAction, ThunkDispatch} from 'redux-thunk'
 
-//import {booksReducer} from './reducers';
 import {useDispatch} from "react-redux";
+import {filmsReducer} from "./reducers";
 
 const rootReducer = combineReducers({
-  //books: booksReducer,
+  films: filmsReducer,
 });
 
 export const store = createStore(rootReducer, composeWithDevTools(
@@ -14,4 +14,7 @@ export const store = createStore(rootReducer, composeWithDevTools(
   // devToolsEnhancer(),
 ));
 
-// export const Dispatch = useDispatch();
+export const useAppDispatch = useDispatch<AppDispatch>;
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = ThunkDispatch<RootState, unknown, AnyAction>
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, AnyAction>
