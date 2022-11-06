@@ -1,0 +1,179 @@
+.settings__wrapper {
+    width: 1186px
+}
+
+.settings__title {
+    margin-bottom: 16px;
+
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 36px;
+}
+
+.settings__profile {
+    width: 100%;
+    height: 168px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 40px;
+
+    color: #fff;
+    background-color: #242426;
+    border-radius: 10px;
+}
+
+.inputContainer__title {
+    margin-bottom: 8px;
+}
+
+.inputContainer__input {
+    width: 511px;
+    height: 56px;
+    padding-left: 20px;
+
+    font-family: "Exo 2", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff;
+
+    background-color: #323537;;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+}
+
+.inputContainer__input:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+.settings__password {
+    width: 100%;
+    height: 280px;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 40px;
+
+    color: #fff;
+    background-color: #242426;
+    border-radius: 10px;
+}
+.settings__password .settings__inputContainer {
+    margin-top: 40px;
+}
+.settings__password .settings__inputContainer:last-child {
+    margin-top: 24px;
+}
+.settings__colorMode {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 48px;
+
+    background-color: #242426;
+    border-radius: 10px;
+}
+.settings__colorModeContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+.theme__title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    color: #fff;
+}
+.theme__description {
+    font-size: 16px;
+    line-height: 24px;
+    color: #AFB2B6;
+}
+
+
+/*switch*/
+
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 32px;
+    height: 20px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 16px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: #fff;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+
+}
+
+input:checked + .slider {
+    background-color: #7B61FF;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #7B61FF;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(12px);
+    -ms-transform: translateX(12px);
+    transform: translateX(12px);
+}
+
+.settings__buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+.buttons__container {
+    width: 572px;
+    height: 56px;
+    display: flex;
+    justify-content: space-between;
+}
+.buttons__button {
+    width: 266px;
+    height: 56px;
+
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    color: #fff;
+
+    background-color: #323537;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.buttons__button:last-child {
+    background-color: #7B61FF;
+}
