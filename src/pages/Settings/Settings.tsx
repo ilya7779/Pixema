@@ -1,4 +1,5 @@
 import styles from './Settings.module.css';
+// import {ChooseTheme} from "../../components/Settings";
 
 
 export const Settings = () => {
@@ -38,13 +39,14 @@ export const Settings = () => {
         <div className={styles.settings__colorModeContainer}>
           <div className={styles.colorMode__theme}>
             <div className={styles.theme__title}>Dark</div>
-            <div className={styles.theme__description}>Use dark thema</div>
+            <div className={styles.theme__description}>Use dark theme</div>
           </div>
           <div className={styles.colorMode__switch}>
             <label className={styles.switch}>
               <input type="checkbox"/>
               <span className={styles.slider}></span>
             </label>
+            {/*<ChooseTheme />*/}
           </div>
         </div>
       </div>

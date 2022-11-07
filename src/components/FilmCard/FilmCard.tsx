@@ -12,7 +12,7 @@ export const FilmCard = (props: FilmCardProps) => {
   const {film: {imdbID, Title, Poster}} = props;
 
   const openFilmHandler = () => {
-    navigate(`/${imdbID}`);
+    navigate(`/film/${imdbID}`);
   }
 
   return (
