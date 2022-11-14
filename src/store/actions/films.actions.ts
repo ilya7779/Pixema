@@ -1,6 +1,7 @@
 import * as t from './../actions'
 import {Film} from "../../types";
 import {Dispatch} from "redux";
+import {RootState} from "../store";
 
 export const setCurrentFilmAC = (payload: Film) => {
   return {type: t.SET_CURRENT_FILM, payload};
@@ -9,6 +10,31 @@ export const setCurrentFilmAC = (payload: Film) => {
 export const setFilmsAC = (payload: Array<Film>) => {
   return {type: t.SET_FILMS, payload};
 }
+
+export const IncPageNumberAC = () => {
+  return {type: t.INC_PAGE_NUMBER};
+}
+
+export const resetPageNumberAC = () => {
+  return {type: t.RESET_PAGE_NUMBER};
+}
+export const resetPageFilmsAC = () => {
+  return {type: t.RESET_PAGE_FILMS};
+}
+export const resetSearchTermAC = () => {
+  return {type: t.RESET_SEARCH_TERM};
+}
+
+export const setSearchTermAC = (payload: string) => {
+  return {type: t.SET_SEARCH_TERM, payload};
+}
+export const setSearchedFilmsAC = (payload: Array<Film>) => {
+  return {type: t.SET_SEARCHED_FILMS, payload};
+}
+export const setLoadingAC = (payload: boolean) => {
+  return {type: t.SET_LOADING, payload};
+}
+
 
 export const getCurrentFilmTC = (imdbID: string) => {
   return (dispatch: Dispatch) => {
@@ -23,13 +49,90 @@ export const getCurrentFilmTC = (imdbID: string) => {
 }
 
 export const getFilmsTC = () => {
-  return (dispatch: Dispatch) => {
-    fetch(`https://www.omdbapi.com/?apikey=9ce5b90&s=kul`).then((response) => {
-      return response.json();
-    }).then((json) => {
-      dispatch(setFilmsAC(json))
-    }).catch((error: any) => {
-      console.log(error)
-    });
+  return (dispatch: Dispatch, getState: () => RootState) => {
+    dispatch(setLoadingAC(true));
+    if (getState().films.page === 0) {
+      dispatch(IncPageNumberAC());
+    }
+    const pageNumber = getState().films.page;
+    fetch(`https://www.omdbapi.com/?apikey=9ce5b90&s=new&page=${pageNumber}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        dispatch(setFilmsAC(json.Search))
+        dispatch(setLoadingAC(false));
+      })
+      .catch((error: any) => {
+        dispatch(setLoadingAC(false));
+        console.log(error)
+      });
+  }
+}
+
+export const getShowMoreFilmsTC = () => {
+  return (dispatch: Dispatch, getState: () => RootState) => {
+    dispatch(setLoadingAC(true));
+    const pageNumber = getState().films.page;
+
+    fetch(`https://www.omdbapi.com/?apikey=9ce5b90&s=new&page=${pageNumber + 1}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        dispatch(IncPageNumberAC());
+        dispatch(setFilmsAC(json.Search));
+        dispatch(setLoadingAC(false));
+      })
+      .catch((error: any) => {
+        dispatch(setLoadingAC(false));
+        console.log(error)
+      });
+  }
+}
+
+export const getFilteredFilmsTC = () => {
+  return (dispatch: Dispatch, getState: () => RootState) => {
+    dispatch(setLoadingAC(true));
+    const searchTerm = getState().films.searchTerm;
+    const pageNumber = getState().films.page;
+
+    fetch(`https://www.omdbapi.com/?apikey=9ce5b90&s=${searchTerm}&page=${pageNumber + 1}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        dispatch(setSearchedFilmsAC(json.Search))
+        if (pageNumber === 0) {
+          dispatch(IncPageNumberAC());
+        }
+        dispatch(setLoadingAC(false));
+      })
+      .catch((error: any) => {
+        dispatch(setLoadingAC(false));
+        console.log(error)
+      });
+  }
+}
+
+export const getShowMoreFilteredFilmsTC = () => {
+  return (dispatch: Dispatch, getState: () => RootState) => {
+    dispatch(setLoadingAC(true));
+    const searchTerm = getState().films.searchTerm;
+    const pageNumber = getState().films.page;
+
+    fetch(`https://www.omdbapi.com/?apikey=9ce5b90&s=${searchTerm}&page=${pageNumber + 1}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        dispatch(setSearchedFilmsAC(json.Search))
+        dispatch(IncPageNumberAC());
+        dispatch(setLoadingAC(false));
+      })
+      .catch((error: any) => {
+        dispatch(setLoadingAC(false));
+        console.log(error)
+      });
   }
 }

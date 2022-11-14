@@ -1,0 +1,106 @@
+.film {
+    display: flex;
+}
+.leftSide__photo {
+    margin-bottom: 32px;
+}
+.leftSide__photo img {
+    width: 266px;
+    height: 356px;
+}
+.leftSide__buttons {
+    display: flex;
+    justify-content: space-between;
+}
+.leftSide__button {
+    width: 132px;
+    height: 56px;
+
+    color: #AFB2B6;
+    background-color: #323537;
+    border: none;
+    border-radius: 10px 0 0 10px;
+    cursor: pointer;
+}
+.leftSide__button:last-child {
+    border-radius: 0 10px 10px 0;
+}
+.film__rightSide {
+    margin-left: 42px;
+}
+.rightSide__genres {
+    font-size: 16px;
+    line-height: 24px;
+    color: #AFB2B6;
+}
+.rightSide__title {
+    margin-bottom: 24px;
+
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 60px;
+}
+.rightSide__ratings {
+    width: 229px;
+    height: 28px;
+
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+
+    font-weight: 600;
+}
+.rightSide__ratingPixema {
+    width: 37px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #fff;
+    background-color: #00A340;
+    border-radius: 6px;
+}
+.rightSide__ratingIMDb {
+    width: 79px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #fff;
+    background-color: #323537;
+    border-radius: 6px;
+}
+.rightSide__time {
+    width: 73px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #fff;
+    background-color: #323537;
+    border-radius: 6px;
+}
+.rightSide__plot {
+    margin-bottom: 40px;
+
+    font-size: 16px;
+    line-height: 24px;
+}
+.rightSide__descriptionBlock {
+    display: flex;
+
+    font-size: 16px;
+    line-height: 24px;
+}
+.rightSide__descriptionBlock:not(:last-child) {
+    margin-bottom: 20px;
+}
+.descriptionBlock__title {
+    width: 136px;
+
+    font-weight: 600;
+    color: #AFB2B6;
+}

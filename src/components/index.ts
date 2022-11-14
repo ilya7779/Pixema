@@ -1,2 +1,6 @@
 export * from './Header'
 export * from './Sidebar'
+export * from './FilmCard'
+export * from './ReactSpinner'
+export * from './Search'
+export * from './Settings'

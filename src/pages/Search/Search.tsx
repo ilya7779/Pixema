@@ -1,50 +1,52 @@
 import {useEffect, useMemo} from "react";
 import {useSelector} from "react-redux";
 
-import styles from './Main.module.css';
+import styles from './Search.module.css';
+import {useAppDispatch} from "../../store";
+import {Film} from "../../types";
 import {FilmCard, LoadingSpinner} from "../../components";
 import {
-  getFilmsTC,
-  getShowMoreFilmsTC,
+  getFilteredFilmsTC,
+  getShowMoreFilteredFilmsTC,
+  resetPageFilmsAC,
+  resetPageNumberAC,
   resetSearchTermAC
 } from "../../store/actions";
-import {filmsSelector, loadingSelector, searchTermSelector} from "../../store/selectors";
-import {Film} from "../../types";
-import {useAppDispatch} from "../../store";
+import {loadingSelector, searchedFilmsSelector, searchTermSelector} from "../../store/selectors";
 
 
-export const Main = () => {
+export const Search = () => {
 
   const dispatch = useAppDispatch();
-  const filmList = useSelector(filmsSelector);
   const searchTerm = useSelector(searchTermSelector);
+  const filmList = useSelector(searchedFilmsSelector);
   const loading = useSelector(loadingSelector);
 
 
   useEffect(() => {
-    dispatch(getFilmsTC());
-
     return () => {
       dispatch(resetSearchTermAC());
     }
-  }, []);
+  }, [])
+
+  useEffect(() => {
+    dispatch(resetPageNumberAC());
+    dispatch(resetPageFilmsAC());
+    dispatch(getFilteredFilmsTC());
+  }, [searchTerm]);
 
   const showMoreFilms = () => {
-    dispatch(getShowMoreFilmsTC())
+    dispatch(getShowMoreFilteredFilmsTC());
   }
 
-  const filteredFilms = filmList.filter(film => {
-    return film.Title.toLowerCase().includes(searchTerm.toLowerCase());
-  })
-
   const films = useMemo(() => {
-    return filteredFilms.map((film: Film) =>
+    return filmList.map((film: Film) =>
       <FilmCard film={film} key={film.imdbID}/>
     );
-  }, [filteredFilms]);
+  }, [filmList]);
 
   return (
-    <main className={styles.wrapper}>
+    <div className={styles.wrapper}>
       <div className={styles.containerFilmCards}>
         {films}
       </div>
@@ -58,6 +60,6 @@ export const Main = () => {
         ? ''
         : <button className={styles.button_showMore} onClick={() => showMoreFilms()}>Show more</button>
       }
-    </main>
+    </div>
   );
 };

@@ -1,2 +1,9 @@
-export const SET_CURRENT_FILM = 'currentFilm/SET_CURRENT_FILM';
+export const SET_CURRENT_FILM = 'films/SET_CURRENT_FILM';
 export const SET_FILMS = 'films/SET_FILMS';
+export const INC_PAGE_NUMBER = 'films/INC_PAGE_NUMBER';
+export const RESET_PAGE_NUMBER = 'films/RESET_PAGE_NUMBER';
+export const RESET_PAGE_FILMS = 'films/RESET_PAGE_FILMS';
+export const RESET_SEARCH_TERM = 'films/RESET_SEARCH_TERM';
+export const SET_SEARCH_TERM = 'films/SET_SEARCH_TERM';
+export const SET_SEARCHED_FILMS = 'films/SET_SEARCHED_FILMS';
+export const SET_LOADING = 'films/SET_LOADING';

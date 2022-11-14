@@ -12,9 +12,9 @@ export {}
 //
 //   return (
 //     <>
-//       {/*{theme}*/}
-//       <button onClick={() => changeThemeHandler()}>Light</button>
+//        {theme}
+//        <button onClick={() => changeThemeHandler()}>Light</button>
 //       {/*<button onClick={() => changeTheme('dark')}>Dark</button>*/}
-//     </>
-//   )
+//      </>
+//    )
 // }

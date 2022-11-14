@@ -1,5 +1,5 @@
 import styles from './Settings.module.css';
-// import {ChooseTheme} from "../../components/Settings";
+// import {ChooseTheme} from "../../components/Search";
 
 
 export const Settings = () => {
@@ -52,8 +52,8 @@ export const Settings = () => {
       </div>
       <div className={styles.settings__buttons}>
         <div className={styles.buttons__container}>
-          <button className={styles.buttons__button}>Cancel</button>
-          <button className={styles.buttons__button}>Save</button>
+          <button className={styles.buttons__button} type={"button"}>Cancel</button>
+          <button className={styles.buttons__button} type={"button"}>Save</button>
         </div>
       </div>
     </form>
