@@ -2,7 +2,7 @@ import { FC, SVGProps } from 'react';
 
 // Меняем значение fill или stroke на "currentColor"
 
-export const Logo: FC<SVGProps<SVGSVGElement>> = (props) => {
+export const LogoLight: FC<SVGProps<SVGSVGElement>> = (props) => {
   return (
     <svg
       width="158"

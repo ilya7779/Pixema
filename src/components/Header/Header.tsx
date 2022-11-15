@@ -1,14 +1,26 @@
+import {useEffect, useState} from "react";
+
 import styles from './Header.module.css';
-import {Logo} from "../../assets/icons";
-import {ChevronDown} from "../../assets/icons/ChevronDown";
 import {Search} from "../Search";
+import {ChevronDown, LogoDark, LogoLight} from "../../assets";
+import {useTheme} from "../../context";
 
 export const Header = () => {
+  const [icon, setIcon] = useState(<LogoLight />);
+  const isTheme = useTheme();
+  useEffect(() => {
+    switch (isTheme.theme) {
+      case "light": setIcon(<LogoLight />); break;
+      case "dark": setIcon(<LogoDark />); break;
+      default: setIcon(<LogoLight />);
+    }
+  }, [isTheme.theme]);
+
   return (
     <header className={styles.header}>
       <div className={styles.header__container}>
         <div className={styles.header__logo}>
-          <Logo />
+          {icon}
         </div>
         <div className={styles.header__searchContainer}>
           <Search />

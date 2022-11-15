@@ -7,15 +7,15 @@ import './index.css'; // глобальные стили
 
 import {AppLayout} from './layout/';
 import {store} from './store';
-// import {ThemeProvider} from "./context";
+import {ThemeProvider} from "./context";
 
 export const AppRoot = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        {/*<ThemeProvider>*/}
+        <ThemeProvider>
           <AppLayout/>
-        {/*</ThemeProvider>*/}
+        </ThemeProvider>
       </BrowserRouter>
     </Provider>
   );

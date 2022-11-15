@@ -18,8 +18,8 @@ export const IncPageNumberAC = () => {
 export const resetPageNumberAC = () => {
   return {type: t.RESET_PAGE_NUMBER};
 }
-export const resetPageFilmsAC = () => {
-  return {type: t.RESET_PAGE_FILMS};
+export const resetFilmsDataAC = () => {
+  return {type: t.RESET_FILMS_DATA};
 }
 export const resetSearchTermAC = () => {
   return {type: t.RESET_SEARCH_TERM};
@@ -61,11 +61,12 @@ export const getFilmsTC = () => {
       })
       .then((json) => {
         dispatch(setFilmsAC(json.Search))
-        dispatch(setLoadingAC(false));
       })
       .catch((error: any) => {
-        dispatch(setLoadingAC(false));
         console.log(error)
+      })
+      .finally(() => {
+        dispatch(setLoadingAC(false));
       });
   }
 }

@@ -39,6 +39,7 @@
     font-weight: 600;
     font-size: 40px;
     line-height: 60px;
+    color: var(--theme-default-colorText);
 }
 .rightSide__ratings {
     width: 229px;
@@ -88,6 +89,7 @@
 
     font-size: 16px;
     line-height: 24px;
+    color: var(--theme-default-colorText);
 }
 .rightSide__descriptionBlock {
     display: flex;
@@ -103,4 +105,7 @@
 
     font-weight: 600;
     color: #AFB2B6;
+}
+.descriptionBlock__content {
+    color: var(--theme-default-colorText);
 }

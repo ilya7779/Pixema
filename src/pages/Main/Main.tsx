@@ -5,7 +5,7 @@ import styles from './Main.module.css';
 import {FilmCard, LoadingSpinner} from "../../components";
 import {
   getFilmsTC,
-  getShowMoreFilmsTC,
+  getShowMoreFilmsTC, resetPageNumberAC,
   resetSearchTermAC
 } from "../../store/actions";
 import {filmsSelector, loadingSelector, searchTermSelector} from "../../store/selectors";
@@ -20,14 +20,15 @@ export const Main = () => {
   const searchTerm = useSelector(searchTermSelector);
   const loading = useSelector(loadingSelector);
 
-
   useEffect(() => {
-    dispatch(getFilmsTC());
+    filmList.length === 0 && dispatch(getFilmsTC());
 
     return () => {
       dispatch(resetSearchTermAC());
+      //dispatch(resetPageNumberAC());
     }
   }, []);
+
 
   const showMoreFilms = () => {
     dispatch(getShowMoreFilmsTC())

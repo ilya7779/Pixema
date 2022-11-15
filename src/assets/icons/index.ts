@@ -1,4 +1,5 @@
-export * from './Logo'
+export * from './LogoLight'
+export * from './LogoDark'
 export * from './ChevronDown'
 export * from './Filter'
 export * from './Share'

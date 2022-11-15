@@ -2,7 +2,7 @@ import {useSelector} from "react-redux";
 import {useState} from "react";
 
 import styles from './Search.module.css';
-import {IconSearch} from '../../assets';
+import {IconFilter} from '../../assets';
 import {useAppDispatch} from "../../store";
 import {setSearchTermAC} from "../../store/actions";
 import {searchTermSelector} from "../../store/selectors";
@@ -33,28 +33,16 @@ export const Search = () => {
 
   const [searchValueTerm, setSearchValueTerm] = useState('');
   const dispatch = useAppDispatch();
-  // const searchTerm = useSelector(searchTermSelector);
+  const searchTerm = useSelector(searchTermSelector);
 
   const makeRequest = useDebounce((value: string) => {
     dispatch(setSearchTermAC(value));
-  }, 1000);
+  }, 300);
 
   const searchHandler = (event: any) => {
-    setSearchValueTerm(event.target.value)
+    // setSearchValueTerm(event.target.value)
     makeRequest(event.target.value);
   };
-  //
-  // const searchHandler = (event: ChangeEvent<HTMLInputElement>) => {
-  //   dispatch(setSearchTermAC(event.target.value));
-  // };
-
-  // const t = useCallback((s) => debounce((s) => {
-  //   dispatch(setSearchTermAC(s))
-  // }, 1000), []);
-  //
-  // useEffect(() => {
-  //   t(searchValueTerm)
-  // }, [searchValueTerm])
 
   return (
     <div>
@@ -64,11 +52,11 @@ export const Search = () => {
             className={styles.search__input}
             placeholder='Search'
             type='text'
-            value={searchValueTerm}
+            value={searchTerm}
             onChange={(event) => searchHandler(event)}
           />
           <div className={styles.search__iconSearch}>
-            <IconSearch/>
+            <IconFilter/>
           </div>
         </form>
       </div>

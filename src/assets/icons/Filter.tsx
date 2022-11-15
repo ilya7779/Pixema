@@ -2,7 +2,7 @@ import { FC, SVGProps } from 'react';
 
 // Меняем значение fill или stroke на "currentColor"
 
-export const IconSearch: FC<SVGProps<SVGSVGElement>> = (props) => {
+export const IconFilter: FC<SVGProps<SVGSVGElement>> = (props) => {
   return (
     <svg
       width="24"

@@ -1,5 +1,5 @@
 import styles from './Settings.module.css';
-// import {ChooseTheme} from "../../components/Search";
+import {InputSwitch} from "../../components";
 
 
 export const Settings = () => {
@@ -42,18 +42,14 @@ export const Settings = () => {
             <div className={styles.theme__description}>Use dark theme</div>
           </div>
           <div className={styles.colorMode__switch}>
-            <label className={styles.switch}>
-              <input type="checkbox"/>
-              <span className={styles.slider}></span>
-            </label>
-            {/*<ChooseTheme />*/}
+            <InputSwitch />
           </div>
         </div>
       </div>
       <div className={styles.settings__buttons}>
         <div className={styles.buttons__container}>
-          <button className={styles.buttons__button} type={"button"}>Cancel</button>
-          <button className={styles.buttons__button} type={"button"}>Save</button>
+          <button className={styles.buttons__button} type="button">Cancel</button>
+          <button className={styles.buttons__button} type="button">Save</button>
         </div>
       </div>
     </form>

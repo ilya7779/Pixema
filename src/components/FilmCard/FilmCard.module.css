@@ -45,7 +45,7 @@
     padding-bottom: 4px;
 
     font-weight: 700;
-    color: #242426;
+    color: var(--theme-default-colorText);
 }
 .filmCard__authors {
     font-weight: 500;

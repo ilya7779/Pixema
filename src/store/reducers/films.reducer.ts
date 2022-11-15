@@ -34,7 +34,7 @@ export const filmsReducer = (state = initialState, action: any) => {
     case t.RESET_PAGE_NUMBER: {
       return { ...state, page: 0};
     }
-    case t.RESET_PAGE_FILMS: {
+    case t.RESET_FILMS_DATA: {
       return { ...state, films: [], searchedFilms: []};
     }
     case t.RESET_SEARCH_TERM: {

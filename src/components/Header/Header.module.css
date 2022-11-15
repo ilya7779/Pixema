@@ -42,7 +42,7 @@
     font-weight: 600;
     line-height: 24px;
 
-    color: #242426;
+    color: var(--theme-default-colorText);
 }
 .header__chevronDown {
     color: #AFB2B6;

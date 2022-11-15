@@ -1,10 +1,23 @@
 :root {
-  --theme-light-body: #fff;
-  --theme-dark-body: #000;
+  /*----------bgColor-----------*/
+  --theme-light-bgColor: #fff;
+  --theme-dark-bgColor: #000;
+  --theme-default-bgColor: var(--theme-light-bgColor);
 
-  --theme-default-body: var(--theme-light-body);
+/*----------bgColorInput-----------*/
+  --theme-light-bgColorInput: #fff;
+  --theme-dark-bgColorInput: #323537;
+  --theme-default-bgColorInput: var(--theme-light-bgColorInput);
 
+/*----------bgColorButton-----------*/
+  --theme-light-bgColorButton: #AFB2B6;
+  --theme-dark-bgColorButton: #323537;
+  --theme-default-bgColorButton: var(--theme-light-bgColorButton);
 
+/*----------colorText-----------*/
+  --theme-light-colorText: #242426;
+  --theme-dark-colorText: #fff;
+  --theme-default-colorText: var(--theme-light-colorText);
 }
 
 
@@ -60,8 +73,7 @@ table {
 body {
   margin: 0;
 
-  /*color: #fff;*/
-  /*background-color: #000;*/
+  background-color: var(--theme-default-bgColor);
 
   font-family: "Exo 2", sans-serif;
   font-weight: 500;

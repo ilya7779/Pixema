@@ -8,7 +8,7 @@ import {FilmCard, LoadingSpinner} from "../../components";
 import {
   getFilteredFilmsTC,
   getShowMoreFilteredFilmsTC,
-  resetPageFilmsAC,
+  resetFilmsDataAC,
   resetPageNumberAC,
   resetSearchTermAC
 } from "../../store/actions";
@@ -26,12 +26,13 @@ export const Search = () => {
   useEffect(() => {
     return () => {
       dispatch(resetSearchTermAC());
+      dispatch(resetPageNumberAC());
     }
   }, [])
 
   useEffect(() => {
     dispatch(resetPageNumberAC());
-    dispatch(resetPageFilmsAC());
+    dispatch(resetFilmsDataAC());
     dispatch(getFilteredFilmsTC());
   }, [searchTerm]);
 
