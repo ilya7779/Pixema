@@ -9,6 +9,7 @@ type FilmsState = {
   searchTerm: string
   searchedFilms: Array<Film>
   loading: boolean
+  filter: boolean
 }
 
 const initialState: FilmsState = {
@@ -18,6 +19,7 @@ const initialState: FilmsState = {
   searchTerm: '',
   searchedFilms: [],
   loading: false,
+  filter: false,
 };
 
 export const filmsReducer = (state = initialState, action: any) => {
@@ -48,6 +50,10 @@ export const filmsReducer = (state = initialState, action: any) => {
     }
     case t.SET_LOADING: {
       return { ...state, loading: action.payload};
+    }
+    case t.SET_ACTIVE_FILTER: {
+      console.log(state.filter)
+      return { ...state, filter: !state.filter};
     }
     default:
       return state;

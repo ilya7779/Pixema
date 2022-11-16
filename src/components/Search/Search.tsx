@@ -2,11 +2,11 @@ import {useSelector} from "react-redux";
 import {useState} from "react";
 
 import styles from './Search.module.css';
-import {IconFilter} from '../../assets';
 import {useAppDispatch} from "../../store";
-import {setSearchTermAC} from "../../store/actions";
+import {setActiveFilterAC, setSearchTermAC} from "../../store/actions";
 import {searchTermSelector} from "../../store/selectors";
 import {useDebounce} from "../../hooks";
+import {IconFilter} from "../../assets";
 
 
 // function useLatest(value) {
@@ -30,7 +30,6 @@ import {useDebounce} from "../../hooks";
 // }
 
 export const Search = () => {
-
   const [searchValueTerm, setSearchValueTerm] = useState('');
   const dispatch = useAppDispatch();
   const searchTerm = useSelector(searchTermSelector);
@@ -44,6 +43,10 @@ export const Search = () => {
     makeRequest(event.target.value);
   };
 
+  const setActiveFilter = () => {
+    dispatch(setActiveFilterAC());
+  }
+
   return (
     <div>
       <div className={styles.form}>
@@ -55,11 +58,11 @@ export const Search = () => {
             value={searchTerm}
             onChange={(event) => searchHandler(event)}
           />
-          <div className={styles.search__iconSearch}>
-            <IconFilter/>
+          <div className={styles.search__iconFilter}>
+            <button className={styles.search__buttonFilter} type="button" onClick={setActiveFilter}><IconFilter /></button>
           </div>
         </form>
       </div>
     </div>
   );
-};
+}

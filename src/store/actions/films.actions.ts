@@ -24,6 +24,9 @@ export const resetFilmsDataAC = () => {
 export const resetSearchTermAC = () => {
   return {type: t.RESET_SEARCH_TERM};
 }
+export const setActiveFilterAC = () => {
+  return {type: t.SET_ACTIVE_FILTER};
+}
 
 export const setSearchTermAC = (payload: string) => {
   return {type: t.SET_SEARCH_TERM, payload};

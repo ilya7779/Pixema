@@ -7,3 +7,4 @@ export const RESET_SEARCH_TERM = 'films/RESET_SEARCH_TERM';
 export const SET_SEARCH_TERM = 'films/SET_SEARCH_TERM';
 export const SET_SEARCHED_FILMS = 'films/SET_SEARCHED_FILMS';
 export const SET_LOADING = 'films/SET_LOADING';
+export const SET_ACTIVE_FILTER = 'films/SET_ACTIVE_FILTER';

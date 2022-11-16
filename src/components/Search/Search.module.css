@@ -12,13 +12,6 @@
   border-radius: 10px;
   box-shadow: 0 4px 4px 0 #00000040;
 }
-
-.search__iconSearch {
-  padding-right: 14px;
-
-  color: #AFB2B6;
-}
-
 .search__input {
   width: 95%;
   height: 95%;
@@ -30,15 +23,25 @@
   font-family: "Exo 2", sans-serif;
   font-weight: 500;
   font-size: 16px;
-  font-weight: 500;
   line-height: 24px;
   color: #80858B;
 }
-
 .search__input:hover {
   font-size: 24px
 }
-
 .search__input:focus::-webkit-input-placeholder {
   color: transparent;
+}
+.search__iconFilter {
+  padding-right: 14px;
+
+  color: #AFB2B6;
+}
+.search__buttonFilter {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
 }

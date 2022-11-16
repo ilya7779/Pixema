@@ -4,6 +4,7 @@ import styles from './Header.module.css';
 import {Search} from "../Search";
 import {ChevronDown, LogoDark, LogoLight} from "../../assets";
 import {useTheme} from "../../context";
+import {Filter} from "../Filter";
 
 export const Header = () => {
   const [icon, setIcon] = useState(<LogoLight />);
@@ -33,6 +34,7 @@ export const Header = () => {
           </div>
         </div>
       </div>
+      <Filter/>
     </header>
   );
 };

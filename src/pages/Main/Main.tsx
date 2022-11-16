@@ -5,7 +5,7 @@ import styles from './Main.module.css';
 import {FilmCard, LoadingSpinner} from "../../components";
 import {
   getFilmsTC,
-  getShowMoreFilmsTC, resetPageNumberAC,
+  getShowMoreFilmsTC,
   resetSearchTermAC
 } from "../../store/actions";
 import {filmsSelector, loadingSelector, searchTermSelector} from "../../store/selectors";
