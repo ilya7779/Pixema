@@ -19,8 +19,9 @@
     align-items: center;
     margin-bottom: 40px;
 
-    color: #fff;
-    background-color: #242426;
+    color: var(--theme-default-colorText);
+    background-color: var(--theme-default-bgColorContainer);
+    border: var(--theme-default-border);
     border-radius: 10px;
 }
 
@@ -40,7 +41,8 @@
     color: var(--theme-default-colorText);
 
     background-color: var(--theme-default-bgColorInput);
-    border: none;
+    border: var(--theme-default-border);
+
     outline: none;
     border-radius: 10px;
 }
@@ -55,8 +57,9 @@
     justify-content: space-evenly;
     margin-bottom: 40px;
 
-    color: #fff;
-    background-color: #242426;
+    color: var(--theme-default-colorText);
+    background-color: var(--theme-default-bgColorContainer);
+    border: var(--theme-default-border);
     border-radius: 10px;
 }
 .settings__password .settings__inputContainer {
@@ -72,7 +75,9 @@
     align-items: center;
     margin-bottom: 48px;
 
-    background-color: #242426;
+    color: var(--theme-default-colorText);
+    background-color: var(--theme-default-bgColorContainer);
+    border: var(--theme-default-border);
     border-radius: 10px;
 }
 .settings__colorModeContainer {
@@ -86,7 +91,6 @@
     font-size: 16px;
     font-weight: 700;
     line-height: 24px;
-    color: #fff;
 }
 .theme__description {
     font-size: 16px;
@@ -108,6 +112,7 @@
     width: 266px;
     height: 56px;
 
+    font-family:  'Exo 2';
     font-size: 16px;
     font-weight: 600;
     line-height: 24px;

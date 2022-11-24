@@ -4,6 +4,7 @@ import {BrowserRouter} from 'react-router-dom';
 
 import './assets/fonts/fonts.css'; // шрифты
 import './index.css'; // глобальные стили
+import './firebase';
 
 import {AppLayout} from './layout/';
 import {store} from './store';

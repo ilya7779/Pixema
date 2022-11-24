@@ -95,7 +95,7 @@
 .sortBy__button:last-child {
     border-radius: 0 10px 10px 0;
 }
-.sortBy__button:active {
+.sortBy__button.active {
     background-color: #323537;
     color: #fff;
 }
@@ -183,6 +183,11 @@ ul .filter__genreInput {
     display: flex;
     justify-content: space-between;
 }
+.filter__buttons a{
+    display: flex;
+    width: 45%;
+    text-decoration: none;
+}
 .buttons__button {
     width: 45%;
     height: 56px;
@@ -199,4 +204,5 @@ ul .filter__genreInput {
 }
 .buttons__button:last-child {
     background-color: #7B61FF;
+    width: 100%;
 }

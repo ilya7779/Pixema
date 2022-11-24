@@ -10,6 +10,10 @@ type FilmsState = {
   searchedFilms: Array<Film>
   loading: boolean
   filter: boolean
+  sortByYear: boolean
+  filterSearch: string
+  searchYearFrom: string
+  searchYearTo: string
 }
 
 const initialState: FilmsState = {
@@ -20,6 +24,10 @@ const initialState: FilmsState = {
   searchedFilms: [],
   loading: false,
   filter: false,
+  sortByYear: false,
+  filterSearch: '',
+  searchYearFrom: '',
+  searchYearTo: '',
 };
 
 export const filmsReducer = (state = initialState, action: any) => {
@@ -52,8 +60,19 @@ export const filmsReducer = (state = initialState, action: any) => {
       return { ...state, loading: action.payload};
     }
     case t.SET_ACTIVE_FILTER: {
-      console.log(state.filter)
       return { ...state, filter: !state.filter};
+    }
+    case t.SET_SORT_BY_YEAR: {
+      return { ...state, sortByYear: action.payload};
+    }
+    case t.SET_FILTER_SEARCH: {
+      return { ...state, filterSearch: action.payload};
+    }
+    case t.SET_SEARCH_YEAR_FROM: {
+      return { ...state, searchYearFrom: action.payload};
+    }
+    case t.SET_SEARCH_YEAR_TO: {
+      return { ...state, searchYearTo: action.payload};
     }
     default:
       return state;

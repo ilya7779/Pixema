@@ -14,10 +14,20 @@
   --theme-dark-bgColorButton: #323537;
   --theme-default-bgColorButton: var(--theme-light-bgColorButton);
 
-/*----------colorText-----------*/
+  /*----------bgColorContainer-----------*/
+  --theme-light-bgColorContainer: #fff;
+  --theme-dark-bgColorContainer: #242426;
+  --theme-default-bgColorContainer: var(--theme-light-bgColorContainer);
+
+  /*----------colorText-----------*/
   --theme-light-colorText: #242426;
   --theme-dark-colorText: #fff;
   --theme-default-colorText: var(--theme-light-colorText);
+
+  /*----------border-----------*/
+  --theme-light-border: 2px solid #AFB2B6;
+  --theme-dark-border: none;
+  --theme-default-border: var(--theme-light-border);
 }
 
 

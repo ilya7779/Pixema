@@ -5,6 +5,7 @@ import {Search} from "../Search";
 import {ChevronDown, LogoDark, LogoLight} from "../../assets";
 import {useTheme} from "../../context";
 import {Filter} from "../Filter";
+import {Link} from "react-router-dom";
 
 export const Header = () => {
   const [icon, setIcon] = useState(<LogoLight />);
@@ -29,9 +30,9 @@ export const Header = () => {
             <div className={styles.privateArea__iconName}>AL</div>
             <div className={styles.privateArea__name}>Artem Lapitsky</div>
           </div>
-          <div className={styles.header__chevronDown}>
+          <Link to='/signIn' className={styles.header__chevronDown}>
             <ChevronDown />
-          </div>
+          </Link>
         </div>
       </div>
       <Filter/>

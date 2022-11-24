@@ -6,15 +6,12 @@ import {RootState} from "../store";
 export const setCurrentFilmAC = (payload: Film) => {
   return {type: t.SET_CURRENT_FILM, payload};
 };
-
 export const setFilmsAC = (payload: Array<Film>) => {
   return {type: t.SET_FILMS, payload};
 }
-
 export const IncPageNumberAC = () => {
   return {type: t.INC_PAGE_NUMBER};
 }
-
 export const resetPageNumberAC = () => {
   return {type: t.RESET_PAGE_NUMBER};
 }
@@ -27,7 +24,6 @@ export const resetSearchTermAC = () => {
 export const setActiveFilterAC = () => {
   return {type: t.SET_ACTIVE_FILTER};
 }
-
 export const setSearchTermAC = (payload: string) => {
   return {type: t.SET_SEARCH_TERM, payload};
 }
@@ -36,6 +32,18 @@ export const setSearchedFilmsAC = (payload: Array<Film>) => {
 }
 export const setLoadingAC = (payload: boolean) => {
   return {type: t.SET_LOADING, payload};
+}
+export const setSortByYearAC = (payload: boolean) => {
+  return {type: t.SET_SORT_BY_YEAR, payload};
+}
+export const setFilterSearchAC = (payload: string) => {
+  return {type: t.SET_FILTER_SEARCH, payload};
+}
+export const setSearchYearFromAC = (payload: string) => {
+  return {type: t.SET_SEARCH_YEAR_FROM, payload};
+}
+export const setSearchYearToAC = (payload: string) => {
+  return {type: t.SET_SEARCH_YEAR_TO, payload};
 }
 
 
@@ -110,11 +118,12 @@ export const getFilteredFilmsTC = () => {
         if (pageNumber === 0) {
           dispatch(IncPageNumberAC());
         }
-        dispatch(setLoadingAC(false));
       })
       .catch((error: any) => {
-        dispatch(setLoadingAC(false));
         console.log(error)
+      })
+      .finally(() => {
+        dispatch(setLoadingAC(false));
       });
   }
 }

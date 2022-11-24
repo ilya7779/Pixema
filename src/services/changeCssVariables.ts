@@ -5,7 +5,7 @@ export const changeCssVariables = (theme: Theme) => {
    // @ts-ignore
   // root.style.setProperty('--theme-default-bgColor', `var(--theme-${theme}-bgColor)`);
 
-  const cssVariables = ['bgColor', 'bgColorInput', 'colorText', 'bgColorButton']
+  const cssVariables = ['bgColor', 'bgColorInput', 'colorText', 'bgColorButton', 'bgColorContainer', 'border']
   cssVariables.forEach(element => {
    // @ts-ignore
     root.style.setProperty(

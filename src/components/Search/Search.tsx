@@ -34,13 +34,13 @@ export const Search = () => {
   const dispatch = useAppDispatch();
   const searchTerm = useSelector(searchTermSelector);
 
-  const makeRequest = useDebounce((value: string) => {
-    dispatch(setSearchTermAC(value));
-  }, 300);
+  // const makeRequest = useDebounce((value: string) => {
+  //   dispatch(setSearchTermAC(value));
+  // }, 300);
 
   const searchHandler = (event: any) => {
-    // setSearchValueTerm(event.target.value)
-    makeRequest(event.target.value);
+    dispatch(setSearchTermAC(event.target.value));
+    // makeRequest(event.target.value);
   };
 
   const setActiveFilter = () => {
