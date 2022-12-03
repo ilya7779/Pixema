@@ -3,10 +3,11 @@ import {composeWithDevTools} from '@redux-devtools/extension';
 import thunk, {ThunkAction, ThunkDispatch} from 'redux-thunk'
 
 import {useDispatch} from "react-redux";
-import {filmsReducer} from "./reducers";
+import {filmsReducer, authorizationReducer} from "./reducers";
 
 const rootReducer = combineReducers({
   films: filmsReducer,
+  authorization: authorizationReducer,
 });
 
 export const store = createStore(rootReducer, composeWithDevTools(

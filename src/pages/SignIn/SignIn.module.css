@@ -10,6 +10,9 @@
     align-items: center;
     background-color: rebeccapurple;
 }
+.logo {
+    margin-right: auto;
+}
 .signIn__container {
     width: calc(574px - 80px);
     height: 540px;

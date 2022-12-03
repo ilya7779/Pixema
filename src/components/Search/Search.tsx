@@ -1,10 +1,8 @@
-import {useSelector} from "react-redux";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 import styles from './Search.module.css';
 import {useAppDispatch} from "../../store";
 import {setActiveFilterAC, setSearchTermAC} from "../../store/actions";
-import {searchTermSelector} from "../../store/selectors";
 import {useDebounce} from "../../hooks";
 import {IconFilter} from "../../assets";
 
@@ -32,15 +30,18 @@ import {IconFilter} from "../../assets";
 export const Search = () => {
   const [searchValueTerm, setSearchValueTerm] = useState('');
   const dispatch = useAppDispatch();
-  const searchTerm = useSelector(searchTermSelector);
 
-  // const makeRequest = useDebounce((value: string) => {
-  //   dispatch(setSearchTermAC(value));
-  // }, 300);
+  const makeRequest = useDebounce((value: string) => {
+    dispatch(setSearchTermAC(value));
+  }, 600);
+
+  useEffect(() => {
+    makeRequest(searchValueTerm)
+  }, [searchValueTerm]);
+
 
   const searchHandler = (event: any) => {
-    dispatch(setSearchTermAC(event.target.value));
-    // makeRequest(event.target.value);
+    setSearchValueTerm(event.target.value);
   };
 
   const setActiveFilter = () => {
@@ -55,7 +56,7 @@ export const Search = () => {
             className={styles.search__input}
             placeholder='Search'
             type='text'
-            value={searchTerm}
+            value={searchValueTerm}
             onChange={(event) => searchHandler(event)}
           />
           <div className={styles.search__iconFilter}>
