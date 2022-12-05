@@ -1,7 +1,8 @@
 import * as t from './../actions'
 import {Film} from "../../types";
 import {Dispatch} from "redux";
-import {RootState} from "../store";
+import {AppThunk, RootState} from "../store";
+import {getCurrentFilm, getFilms, getFilteredFilms, getShowMoreFilms} from "../../api/films";
 
 export const setCurrentFilmAC = (payload: Film) => {
   return {type: t.SET_CURRENT_FILM, payload};
@@ -47,105 +48,77 @@ export const setSearchYearToAC = (payload: string) => {
 }
 
 
-export const getCurrentFilmTC = (imdbID: string) => {
-  return (dispatch: Dispatch) => {
-    fetch(`https://www.omdbapi.com/?apikey=9ce5b90&i=${imdbID}`).then((response) => {
-      return response.json();
-    }).then((json) => {
-      dispatch(setCurrentFilmAC(json))
-    }).catch((error: any) => {
-      console.log(error)
-    });
+export const getCurrentFilmTC = (imdbID: string): AppThunk => async (dispatch) => {
+  try {
+    const result = await getCurrentFilm(imdbID);
+    console.log(result)
+
+    dispatch(setCurrentFilmAC(result.data));
+  } catch (e) {
+    console.error(e)
   }
 }
 
-export const getFilmsTC = () => {
-  return (dispatch: Dispatch, getState: () => RootState) => {
-    dispatch(setLoadingAC(true));
-    if (getState().films.page === 0) {
+export const getFilmsTC = (): AppThunk => async (dispatch: Dispatch, getState: () => RootState) => {
+  dispatch(setLoadingAC(true));
+  if (getState().films.page === 0) {
+    dispatch(IncPageNumberAC());
+  }
+  const pageNumber = getState().films.page;
+  try {
+    const result = await getFilms(pageNumber);
+    dispatch(setFilmsAC(result.data.Search))
+  } catch (e) {
+    console.error(e)
+  } finally {
+    dispatch(setLoadingAC(false));
+  }
+}
+
+export const getShowMoreFilmsTC = (): AppThunk => async (dispatch: Dispatch, getState: () => RootState) => {
+  dispatch(setLoadingAC(true));
+  const pageNumber = getState().films.page;
+  try {
+    const result = await getShowMoreFilms(pageNumber);
+    dispatch(IncPageNumberAC());
+    dispatch(setFilmsAC(result.data.Search));
+    dispatch(setLoadingAC(false));
+  } catch (e) {
+    console.error(e);
+  } finally {
+    dispatch(setLoadingAC(false));
+  }
+}
+
+export const getFilteredFilmsTC = (): AppThunk => async (dispatch: Dispatch, getState: () => RootState) => {
+  dispatch(setLoadingAC(true));
+  const searchTerm = getState().films.searchTerm;
+  const pageNumber = getState().films.page;
+  try {
+    const result = await getFilteredFilms({searchTerm, pageNumber});
+    dispatch(setSearchedFilmsAC(result.data.Search));
+    if (pageNumber === 0) {
       dispatch(IncPageNumberAC());
     }
-    const pageNumber = getState().films.page;
-    fetch(`https://www.omdbapi.com/?apikey=9ce5b90&s=new&page=${pageNumber}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((json) => {
-        dispatch(setFilmsAC(json.Search))
-      })
-      .catch((error: any) => {
-        console.log(error)
-      })
-      .finally(() => {
-        dispatch(setLoadingAC(false));
-      });
+  } catch (e) {
+    console.error(e);
+  } finally {
+    dispatch(setLoadingAC(false));
   }
 }
 
-export const getShowMoreFilmsTC = () => {
-  return (dispatch: Dispatch, getState: () => RootState) => {
-    dispatch(setLoadingAC(true));
-    const pageNumber = getState().films.page;
-
-    fetch(`https://www.omdbapi.com/?apikey=9ce5b90&s=new&page=${pageNumber + 1}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((json) => {
-        dispatch(IncPageNumberAC());
-        dispatch(setFilmsAC(json.Search));
-        dispatch(setLoadingAC(false));
-      })
-      .catch((error: any) => {
-        dispatch(setLoadingAC(false));
-        console.log(error)
-      });
-  }
-}
-
-export const getFilteredFilmsTC = () => {
-  return (dispatch: Dispatch, getState: () => RootState) => {
-    dispatch(setLoadingAC(true));
+export const getShowMoreFilteredFilmsTC = (): AppThunk => async (dispatch: Dispatch, getState: () => RootState) => {
+  dispatch(setLoadingAC(true));
     const searchTerm = getState().films.searchTerm;
     const pageNumber = getState().films.page;
-
-    fetch(`https://www.omdbapi.com/?apikey=9ce5b90&s=${searchTerm}&page=${pageNumber + 1}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((json) => {
-        dispatch(setSearchedFilmsAC(json.Search))
-        if (pageNumber === 0) {
-          dispatch(IncPageNumberAC());
-        }
-      })
-      .catch((error: any) => {
-        console.log(error)
-      })
-      .finally(() => {
-        dispatch(setLoadingAC(false));
-      });
-  }
-}
-
-export const getShowMoreFilteredFilmsTC = () => {
-  return (dispatch: Dispatch, getState: () => RootState) => {
-    dispatch(setLoadingAC(true));
-    const searchTerm = getState().films.searchTerm;
-    const pageNumber = getState().films.page;
-
-    fetch(`https://www.omdbapi.com/?apikey=9ce5b90&s=${searchTerm}&page=${pageNumber + 1}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((json) => {
-        dispatch(setSearchedFilmsAC(json.Search))
-        dispatch(IncPageNumberAC());
-        dispatch(setLoadingAC(false));
-      })
-      .catch((error: any) => {
-        dispatch(setLoadingAC(false));
-        console.log(error)
-      });
+  try {
+    const result = await getFilteredFilms({searchTerm, pageNumber});
+    dispatch(setSearchedFilmsAC(result.data.Search))
+    dispatch(IncPageNumberAC());
+    dispatch(setLoadingAC(false));
+  } catch (e) {
+    console.error(e);
+  } finally {
+    dispatch(setLoadingAC(false));
   }
 }

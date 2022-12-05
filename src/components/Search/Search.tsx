@@ -7,26 +7,6 @@ import {useDebounce} from "../../hooks";
 import {IconFilter} from "../../assets";
 
 
-// function useLatest(value) {
-//   const valueRef = useRef(value);
-//
-//   useLayoutEffect(() => {
-//     valueRef.current = value;
-//   }, [value]);
-//   return valueRef;
-// }
-
-// function useDebounce(cb, ms) {
-//   const latestCb = useLatest(cb);
-//   return useMemo(
-//     () =>
-//       debounce((...args) => {
-//         latestCb.current(...args);
-//       }, ms),
-//     [ms, latestCb]
-//   );
-// }
-
 export const Search = () => {
   const [searchValueTerm, setSearchValueTerm] = useState('');
   const dispatch = useAppDispatch();
