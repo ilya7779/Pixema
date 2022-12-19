@@ -206,3 +206,36 @@ ul .filter__genreInput {
     background-color: #7B61FF;
     width: 100%;
 }
+@media (max-width: 1280px) {
+    .filter__container {
+        width: 50%;
+    }
+}
+@media (max-width: 767px) {
+    .filter__container {
+        width: 50%;
+    }
+    .filter__container input {
+        height: 30px;
+    }
+    .buttons__button {
+        height: 52px;
+    }
+}
+@media (max-width: 479px) {
+    .filter__container {
+        width: calc(100% - 80px);
+        border-radius: 0;
+    }
+}
+@media (max-height: 1100px) {
+    .filter__container {
+        overflow: auto;
+    }
+    .filter__container input{
+        padding: 5px 0 5px 20px;
+    }
+    .filter__buttons {
+        margin-top: 15px;
+    }
+}

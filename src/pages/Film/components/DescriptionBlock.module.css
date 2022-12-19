@@ -1,0 +1,18 @@
+.rightSide__descriptionBlock {
+    display: flex;
+
+    font-size: 16px;
+    line-height: 24px;
+}
+.rightSide__descriptionBlock:not(:last-child) {
+    margin-bottom: 20px;
+}
+.descriptionBlock__title {
+    width: 136px;
+
+    font-weight: 600;
+    color: #AFB2B6;
+}
+.descriptionBlock__content {
+    color: var(--theme-default-colorText);
+}

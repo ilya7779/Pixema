@@ -25,7 +25,6 @@ export const Main = () => {
 
     return () => {
       dispatch(resetSearchTermAC());
-      //dispatch(resetPageNumberAC());
     }
   }, []);
 
@@ -47,7 +46,7 @@ export const Main = () => {
   return (
     <main className={styles.wrapper}>
       <div className={styles.containerFilmCards}>
-        {films}
+        {films.length !== 0 ? films : 'No results'}
       </div>
       {!loading
         ? ''
@@ -57,7 +56,7 @@ export const Main = () => {
       }
       {films.length === 0
         ? ''
-        : <button className={styles.button_showMore} onClick={() => showMoreFilms()}>Show more</button>
+        : <button className={styles.button_showMore} disabled={loading && true} onClick={() => showMoreFilms()}>Show more</button>
       }
     </main>
   );

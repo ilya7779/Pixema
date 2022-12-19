@@ -6,14 +6,16 @@
     justify-content: space-between;
     padding: 48px 0 64px 62px;
 
-
     align-items: center;
     background-color: rebeccapurple;
+    cursor: default;
 }
+
 .logo {
     margin-right: auto;
 }
-.signIn__container {
+
+.signUp__container {
     width: calc(574px - 80px);
     height: 732px;
     padding: 40px;
@@ -21,7 +23,8 @@
     background-color: var(--theme-default-bgColorContainer);
     border-radius: 10px;
 }
-.signIn__title {
+
+.signUp__title {
     margin-bottom: 40px;
 
     font-weight: 600;
@@ -29,10 +32,12 @@
     line-height: 36px;
     color: var(--theme-default-colorText);
 }
-.signIn__inputContainer {
+
+.signUp__inputContainer {
     width: 100%;
     margin-bottom: 24px;
 }
+
 .inputContainer__title {
     margin-bottom: 8px;
     font-weight: 600;
@@ -40,6 +45,11 @@
     line-height: 24px;
     color: var(--theme-default-colorText);
 }
+
+.inputContainer__title span {
+    font-size: 18px;
+}
+
 .inputContainer__input {
     width: calc(100% - 20px);
     height: 56px;
@@ -57,19 +67,25 @@
     outline: none;
     border-radius: 10px;
 }
-.signIn__forgotPassword {
+
+.input__errors {
+    color: red;
+}
+
+.signUp__forgotPassword {
     margin: -16px 0 40px 0;
 
     font-size: 14px;
     line-height: 24px;
     color: #80858B;
 }
-.signIn__button {
+
+.signUp__button {
     width: 100%;
     height: 56px;
     margin-bottom: 32px;
 
-    font-family:  'Exo 2';
+    font-family: 'Exo 2';
     font-size: 16px;
     font-weight: 600;
     line-height: 24px;
@@ -80,7 +96,12 @@
     border-radius: 10px;
     cursor: pointer;
 }
-.signIn__signUp {
+
+.signUp__button:disabled {
+    opacity: 0.4;
+}
+
+.signUp__signUp {
     display: flex;
     justify-content: center;
 
@@ -88,13 +109,87 @@
     line-height: 24px;
     color: #80858B;
 }
-.signIn__signUp a {
+
+.signUp__signUp a {
     margin-left: 5px;
     color: #7B61FF;
     text-decoration: none;
 }
+
 .copyright {
     font-size: 16px;
     line-height: 24px;
     color: #fff
+}
+
+@media (max-width: 767px) {
+    .signUp__container {
+        width: 65%;
+        height: 660px;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 479px) {
+    .wrapper {
+        width: calc(100% - 20px);
+        padding-left: 20px
+    }
+
+    .signUp__signUp {
+        font-size: 15px;
+    }
+}
+
+@media (max-height: 991px) {
+    .signUp__container {
+        height: 465px;
+        padding: 15px;
+    }
+
+    .signUp__title {
+        margin-bottom: 10px;
+        font-size: 18px;
+        line-height: 18px;
+    }
+
+    .inputContainer__input {
+        height: 30px;
+    }
+
+    .signUp__button {
+        height: 36px;
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-height: 767px) {
+    .wrapper {
+        height: calc(100vh - 19px);
+        padding: 9px 0 10px 20px;
+    }
+    .signUp__container {
+        height: 335px;
+    }
+    .signUp__inputContainer {
+        margin-bottom: 10px;
+    }
+    .signUp__forgotPassword {
+        margin: -16px 0 5px 0;
+    }
+    .signUp__button {
+        height: 30px;
+        margin-bottom: 5px;
+    }
+    .inputContainer__title {
+        margin-bottom: 0;
+        font-size: 12px;
+        line-height: 16px;
+    }
+}
+
+@media (max-height: 479px) {
+    .wrapper {
+        height: calc(125vh - 19px);
+    }
 }

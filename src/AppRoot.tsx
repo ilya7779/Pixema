@@ -1,14 +1,17 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
+import {initializeApp} from "firebase/app";
 
 import './assets/fonts/fonts.css'; // шрифты
 import './index.css'; // глобальные стили
-import './firebase';
 
 import {AppLayout} from './layout/';
 import {store} from './store';
-import {ThemeProvider} from "./context";
+import {firebaseConfig} from "./services/firebase";
+import {ThemeProvider} from "./context"
+
+initializeApp(firebaseConfig);
 
 export const AppRoot = () => {
   return (

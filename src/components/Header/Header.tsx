@@ -1,20 +1,25 @@
 import {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 
 import styles from './Header.module.css';
 import {Search} from "../Search";
 import {ChevronDown, LogoDark, LogoLight} from "../../assets";
 import {useTheme} from "../../context";
 import {Filter} from "../Filter";
-import {Link} from "react-router-dom";
 
 export const Header = () => {
-  const [icon, setIcon] = useState(<LogoLight />);
+  const [icon, setIcon] = useState(<LogoLight/>);
   const isTheme = useTheme();
   useEffect(() => {
     switch (isTheme.theme) {
-      case "light": setIcon(<LogoLight />); break;
-      case "dark": setIcon(<LogoDark />); break;
-      default: setIcon(<LogoLight />);
+      case "light":
+        setIcon(<LogoLight/>);
+        break;
+      case "dark":
+        setIcon(<LogoDark/>);
+        break;
+      default:
+        setIcon(<LogoLight/>);
     }
   }, [isTheme.theme]);
 
@@ -25,13 +30,13 @@ export const Header = () => {
           {icon}
         </div>
         <div className={styles.header__searchContainer}>
-          <Search />
-          <div className={styles.header__privateArea}>
-            <div className={styles.privateArea__iconName}>AL</div>
-            <div className={styles.privateArea__name}>Artem Lapitsky</div>
-          </div>
+          <Search/>
+        </div>
+        <div className={styles.header__privateArea}>
+          <div className={styles.privateArea__iconName}>AL</div>
+          <div className={styles.privateArea__name}>Artem Lapitsky</div>
           <Link to='/signIn' className={styles.header__chevronDown}>
-            <ChevronDown />
+            <ChevronDown/>
           </Link>
         </div>
       </div>

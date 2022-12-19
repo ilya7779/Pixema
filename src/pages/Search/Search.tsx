@@ -1,4 +1,4 @@
-import {useEffect, useMemo} from "react";
+import React, {useEffect, useMemo} from "react";
 import {useSelector} from "react-redux";
 
 import styles from './Search.module.css';
@@ -10,15 +10,15 @@ import {
   getShowMoreFilteredFilmsTC,
   resetFilmsDataAC,
   resetPageNumberAC,
-  resetSearchTermAC, setFilterSearchAC, setSearchTermAC
+  resetSearchTermAC, setSearchTermAC
 } from "../../store/actions";
 import {
-  filterSearchSelector, filterSelector,
+  filterSelector, hasFilterSelector,
   loadingSelector,
   searchedFilmsSelector,
-  searchTermSelector, searchYearFromSelector, searchYearToSelector,
-  sortByYearSelector
+  searchTermSelector,
 } from "../../store/selectors";
+
 
 
 export const Search = () => {
@@ -27,20 +27,14 @@ export const Search = () => {
   const searchTerm = useSelector(searchTermSelector);
   const filmList = useSelector(searchedFilmsSelector);
   const loading = useSelector(loadingSelector)
-  const sortByYear = useSelector(sortByYearSelector);
-  const filterSearch = useSelector(filterSearchSelector);
-  const searchYearFrom = useSelector(searchYearFromSelector);
-  const searchYearTo = useSelector(searchYearToSelector);
-  const filterActive = useSelector(filterSelector);
-
-
+  const filter = useSelector(filterSelector);
+  const filterActive = useSelector(hasFilterSelector);
 
   useEffect(() => {
-    dispatch(setSearchTermAC(filterSearch));
     return () => {
       dispatch(resetSearchTermAC());
       dispatch(resetPageNumberAC());
-      dispatch(setFilterSearchAC(''));
+      dispatch(setSearchTermAC(''));
     }
   }, [])
 
@@ -54,34 +48,28 @@ export const Search = () => {
     dispatch(getShowMoreFilteredFilmsTC());
   }
 
-  // const sortFilms = useMemo(() => {
-  //   let sortedFilmList = [...filmList];
-  //     return sortedFilmList
-  //
-  //       .sort((a, b) => a.Year < b.Year ? 1 : -1)
-  //       .map((film: Film) =>
-  //       <FilmCard film={film} key={film.imdbID}/>
-  //     );
-  // }, [filmList]);
-
   const sortFilms = useMemo(() => {
     let sortedFilmList = [...filmList];
-    if (sortByYear && (searchYearFrom.length > 0 || searchYearTo.length > 0)) {
+
+    if (filter?.hasSortByYear && (filter?.searchYearFrom.length > 0 || filter?.searchYearTo.length > 0)) {
       return sortedFilmList.sort((a, b) => a.Year < b.Year ? 1 : -1)
-        .filter((film: Film) => film.Year > Number(searchYearFrom))
-        .filter((film: Film) => film.Year < Number(searchYearTo))
+        .filter((film: Film) => film.Year > Number(filter?.searchYearFrom))
+        .filter((film: Film) => film.Year < Number(filter?.searchYearTo))
         .map((film: Film) =>
           <FilmCard film={film} key={film.imdbID}/>
         );
     }
-    else if (searchYearFrom.length > 0 || searchYearTo.length > 0) {
-      return sortedFilmList.filter((film: Film) => film.Year > Number(searchYearFrom))
-        .filter((film: Film) => film.Year < Number(searchYearTo))
+    else if (filter?.searchYearFrom && filter?.searchYearFrom.length > 0
+      || filter?.searchYearTo && filter?.searchYearTo.length > 0) {
+      return sortedFilmList
+        .filter((film: Film) => film.Year > Number(filter?.searchYearFrom))
+        .filter((film: Film) =>
+          film.Year < (Number(filter?.searchYearTo) > 0 ? Number(filter?.searchYearTo) : 9999))
         .map((film: Film) =>
           <FilmCard film={film} key={film.imdbID}/>
         );
     }
-    else if (sortByYear) {
+    else if (filter?.hasSortByYear) {
       return sortedFilmList.sort((a, b) => a.Year < b.Year ? 1 : -1)
         .map((film: Film) =>
           <FilmCard film={film} key={film.imdbID}/>
@@ -95,18 +83,13 @@ export const Search = () => {
 
   }, [filmList]);
 
-  // const films = useMemo(() => {
-  //   return filmList.map((film: Film) =>
-  //     <FilmCard film={film} key={film.imdbID}/>
-  //   );
-  // }, [filmList]);
-
-  // const setFilms = sortByYear ? sortFilms : films;
-
+  console.log(searchTerm);
   return (
     <div className={styles.wrapper}>
       <div className={styles.containerFilmCards}>
-        {sortFilms}
+        {searchTerm.length < 3
+          ? 'Enter at least 3 letters in the search'
+          : sortFilms.length !== 0 ? sortFilms : 'No results'}
       </div>
       {!loading
         ? ''
@@ -116,7 +99,7 @@ export const Search = () => {
       }
       {sortFilms.length === 0
         ? ''
-        : <button className={styles.button_showMore} onClick={() => showMoreFilms()}>Show more</button>
+        : <button className={styles.button_showMore} disabled={loading && true} onClick={() => showMoreFilms()}>Show more</button>
       }
     </div>
   );

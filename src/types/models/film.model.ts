@@ -1,3 +1,5 @@
+import {Rating} from "./rating.model";
+
 export type Film = {
   Title: string
   Year: number
@@ -13,20 +15,7 @@ export type Film = {
   Country: string
   Awards: string
   Poster: string
-  Ratings: [
-    {
-      Source: string
-      Value: number
-    },
-    {
-      Source: string
-      Value: number
-    },
-    {
-      Source: string
-      Value: number
-    }
-  ],
+  Ratings: Rating[]
   Metascore: number
   imdbRating: number
   imdbVotes: number

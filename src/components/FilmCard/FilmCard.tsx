@@ -1,6 +1,7 @@
+import {useNavigate} from "react-router-dom";
+
 import styles from './FilmCard.module.css';
 import {Film} from "../../types";
-import {useNavigate} from "react-router-dom";
 
 
 type FilmCardProps = {

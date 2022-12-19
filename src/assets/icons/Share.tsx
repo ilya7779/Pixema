@@ -10,6 +10,7 @@ export const Share: FC<SVGProps<SVGSVGElement>> = (props) => {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <circle cx="7.54545" cy="11.6363" r="2.54545"
               stroke="currentColor"

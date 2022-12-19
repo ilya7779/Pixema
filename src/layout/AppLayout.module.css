@@ -9,3 +9,14 @@
 .app__main {
     display: flex;
 }
+
+@media (max-width: 767px) {
+    .app__wrapper {
+        padding: 0 40px;
+    }
+}
+@media (max-width: 479px) {
+    .app__wrapper {
+        padding: 0 24px;
+    }
+}

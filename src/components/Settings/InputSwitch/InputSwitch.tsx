@@ -6,7 +6,7 @@ import styles from "./InputSwitch.module.css";
 export const InputSwitch = () => {
   const { theme, changeTheme } = useTheme();
 
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(theme === 'dark');
   const changeCheckbox = () => {
     setChecked(!checked);
   }

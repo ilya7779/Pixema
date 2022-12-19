@@ -1,6 +1,7 @@
-import {useLatest} from "./useLatest";
 import {useMemo} from "react";
 import {debounce} from "lodash";
+
+import {useLatest} from "./useLatest";
 
 export function useDebounce(cb?: any, ms?: any) {
   const latestCb = useLatest(cb);

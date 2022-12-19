@@ -1,6 +1,6 @@
 .search__form {
   height: 56px;
-  width: 1164px;
+  width: 96%;
 
   display: flex;
   justify-content: space-between;
@@ -25,9 +25,6 @@
   font-size: 16px;
   line-height: 24px;
   color: #80858B;
-}
-.search__input:hover {
-  font-size: 24px
 }
 .search__input:focus::-webkit-input-placeholder {
   color: transparent;

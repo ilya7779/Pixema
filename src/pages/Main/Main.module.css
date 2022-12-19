@@ -21,7 +21,16 @@
     background-color: var(--theme-default-bgColorButton);
     border: none;
     border-radius: 40px;
+    cursor: pointer;
 }
-
-
+@media (max-width: 991px) {
+    .containerFilmCards {
+        margin: 0 0 0 -40px;
+    }
+}
+@media (max-width: 767px) {
+    .wrapper {
+        margin-top: 45px;
+    }
+}
 

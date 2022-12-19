@@ -21,4 +21,10 @@
     background: #AFB2B6;
     border: none;
     border-radius: 40px;
+    cursor: pointer;
+}
+@media (max-width: 767px) {
+    .wrapper {
+        margin-top: 50px;
+    }
 }

@@ -1,9 +1,8 @@
-import axios, { AxiosError, AxiosInstance } from 'axios';
+import { AxiosError, AxiosInstance } from 'axios';
 
 
 const checkAPIkeyInterceptor = (instance: AxiosInstance) => {
   // срабатывает на REQUEST
-  // const APIkey = localStorage.getItem('apikey=9ce5b90');
   instance.interceptors.request.use((config) => {
     if (!config) {
       config = {};
@@ -27,7 +26,6 @@ const authInterceptor = (instance: AxiosInstance) => {
     }
 
     config.params = { ...config.params, apikey: '9ce5b90'};
-    console.log(config)
 
     // config.headers.Authorization = 'Bearer ' + getToken('access');
 

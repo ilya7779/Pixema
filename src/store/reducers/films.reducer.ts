@@ -1,5 +1,6 @@
 import * as t from './../actions'
-import {Film} from "../../types";
+import {Film, Filter} from "../../types";
+import {FilmsActions} from "../actions";
 
 
 type FilmsState = {
@@ -8,12 +9,9 @@ type FilmsState = {
   page: number
   searchTerm: string
   searchedFilms: Array<Film>
-  loading: boolean
-  filter: boolean
-  sortByYear: boolean
-  filterSearch: string
-  searchYearFrom: string
-  searchYearTo: string
+  isLoading: boolean
+  hasFilter: boolean
+  filter: null | Filter
 }
 
 const initialState: FilmsState = {
@@ -22,59 +20,50 @@ const initialState: FilmsState = {
   page: 0,
   searchTerm: '',
   searchedFilms: [],
-  loading: false,
-  filter: false,
-  sortByYear: false,
-  filterSearch: '',
-  searchYearFrom: '',
-  searchYearTo: '',
+  isLoading: false,
+  hasFilter: false,
+  filter: null,
 };
 
-export const filmsReducer = (state = initialState, action: any) => {
+export const filmsReducer = (state = initialState, action: FilmsActions): FilmsState => {
   switch (action.type) {
     case t.SET_CURRENT_FILM: {
-      return { ...state, currentFilm: action.payload };
+      return {...state, currentFilm: action.payload};
     }
     case t.SET_FILMS: {
-      return { ...state, films: [...state.films, ...action.payload] };
+      return {...state, films: [...state.films, ...action.payload]};
     }
     case t.INC_PAGE_NUMBER: {
-      return { ...state, page: state.page + 1};
+      return {...state, page: state.page + 1};
     }
     case t.RESET_PAGE_NUMBER: {
-      return { ...state, page: 0};
+      return {...state, page: 0};
     }
     case t.RESET_FILMS_DATA: {
-      return { ...state, films: [], searchedFilms: []};
+      return {...state, films: [], searchedFilms: []};
     }
     case t.RESET_SEARCH_TERM: {
-      return { ...state, searchTerm: ''};
+      return {...state, searchTerm: ''};
     }
     case t.SET_SEARCH_TERM: {
-      return { ...state, searchTerm: action.payload};
+      return {...state, searchTerm: action.payload};
     }
     case t.SET_SEARCHED_FILMS: {
-      return { ...state, searchedFilms: [...state.searchedFilms, ...action.payload]};
+      return {...state, searchedFilms: [...state.searchedFilms, ...action.payload]};
     }
     case t.SET_LOADING: {
-      return { ...state, loading: action.payload};
+      return {...state, isLoading: action.payload};
+    }
+    case t.SET_FILTER: {
+      return {...state, filter: action.payload };
     }
     case t.SET_ACTIVE_FILTER: {
-      return { ...state, filter: !state.filter};
-    }
-    case t.SET_SORT_BY_YEAR: {
-      return { ...state, sortByYear: action.payload};
-    }
-    case t.SET_FILTER_SEARCH: {
-      return { ...state, filterSearch: action.payload};
-    }
-    case t.SET_SEARCH_YEAR_FROM: {
-      return { ...state, searchYearFrom: action.payload};
-    }
-    case t.SET_SEARCH_YEAR_TO: {
-      return { ...state, searchYearTo: action.payload};
+      return { ...state, hasFilter: !state.hasFilter};
     }
     default:
       return state;
   }
 };
+
+
+

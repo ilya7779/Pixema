@@ -1,46 +1,31 @@
+import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 
 import styles from './Filter.module.css';
 import {ChevronDown, Cross} from "../../assets";
+import {hasFilterSelector} from "../../store/selectors";
 import {
-  filterSearchSelector,
-  filterSelector, searchedFilmsSelector,
-  searchYearFromSelector,
-  searchYearToSelector
-} from "../../store/selectors";
-import {
-  getFilteredFilmsTC,
   resetFilmsDataAC,
-  resetPageNumberAC,
-  resetSearchTermAC,
-  setActiveFilterAC,
-  setFilterSearchAC, setSearchTermAC, setSearchYearFromAC, setSearchYearToAC,
-  setSortByYearAC
+  resetPageNumberAC, resetSearchTermAC,
+  setActiveFilterAC, setFilterAC,
 } from "../../store/actions";
 import {useAppDispatch} from "../../store";
-import {useEffect, useState} from "react";
 
 
 export const Filter = () => {
   const dispatch = useAppDispatch();
-  const filmList = useSelector(searchedFilmsSelector);
-  const filterActive = useSelector(filterSelector);
-  const filterSearch = useSelector(filterSearchSelector);
-  const searchYearFrom = useSelector(searchYearFromSelector);
-  const searchYearTo = useSelector(searchYearToSelector);
-
-  // useEffect(() => {
-  //   return () => {
-  //     dispatch(setFilterSearchAC(''));
-  //   }
-  // }, [filterActive]);
+  const filterActive = useSelector(hasFilterSelector);
 
   const setActiveFilter = () => {
     dispatch(setActiveFilterAC());
   }
+
   const [sortButtonYear, setSortButtonYear] = useState(false);
   const [sortButtonRating, setSortButtonRating] = useState(false);
+  const [filterSearch, setFilterSearch] = useState('');
+  const [searchYearFrom, setSearchYearFrom] = useState('');
+  const [searchYearTo, setSearchYearTo] = useState('');
   const activeButtonYear = () => {
     setSortButtonRating(false);
     setSortButtonYear(!sortButtonYear);
@@ -50,25 +35,27 @@ export const Filter = () => {
     setSortButtonRating(!sortButtonRating);
   };
   const showResults = () => {
-    dispatch(resetSearchTermAC());
     dispatch(resetPageNumberAC());
     dispatch(resetFilmsDataAC());
-    dispatch(setSortByYearAC(sortButtonYear));
     dispatch(setActiveFilterAC());
-    dispatch(setSearchTermAC(filterSearch));
+    dispatch(setFilterAC({hasSortByYear: sortButtonYear,
+      filterSearch: filterSearch, searchYearFrom: searchYearFrom, searchYearTo: searchYearTo}));
   }
-  // const setYearSort = () => {
-  //   dispatch(setYearSortAC());
-  // }
-  const searchHandler = (event: any) => {
-    dispatch(setFilterSearchAC(event.target.value));
+  const clearFilter = () => {
+    setSortButtonYear(false);
+    setSortButtonRating(false);
+    setFilterSearch('');
+    setSearchYearFrom('');
+    setSearchYearTo('');
+    dispatch(resetSearchTermAC());
+    dispatch(resetFilmsDataAC());
+    dispatch(setFilterAC({hasSortByYear: sortButtonYear,
+      filterSearch: filterSearch, searchYearFrom: searchYearFrom, searchYearTo: searchYearTo}))
   }
-  const searchYearFromHandler = (event: any) => {
-    dispatch(setSearchYearFromAC(event.target.value));
-  }
-  const searchYearToHandler = (event: any) => {
-    dispatch(setSearchYearToAC(event.target.value));
-  }
+
+    filterActive
+      ? document.querySelector("body")!.setAttribute('style',"overflow: hidden")
+      : document.querySelector("body")!.setAttribute('style', "overflow: visible");
 
   return (
     <div className={filterActive ? styles.filter + ' ' + styles.active : styles.filter} onClick={setActiveFilter}>
@@ -93,7 +80,7 @@ export const Filter = () => {
         <div className={styles.filter__title}>Full or short movie name</div>
         <input className={styles.filter_inputFilm}
                value={filterSearch}
-               onChange={(event) => searchHandler(event)}
+               onChange={(event) => setFilterSearch(event.target.value)}
                type="text"
                placeholder="Your text"/>
         <div className={styles.filter__title}>Genre</div>
@@ -124,13 +111,13 @@ export const Filter = () => {
                  type="number"
                  placeholder="From"
                  value={searchYearFrom}
-                 onChange={(event) => searchYearFromHandler(event)}
+                 onChange={(event) => setSearchYearFrom(event.target.value)}
           />
           <input className={styles.filter_input}
                  type="number"
                  placeholder="To"
                  value={searchYearTo}
-                 onChange={(event) => searchYearToHandler(event)}
+                 onChange={(event) => setSearchYearTo(event.target.value)}
           />
         </div>
         <div className={styles.filter__title}>Rating</div>
@@ -144,7 +131,7 @@ export const Filter = () => {
           <div className={styles.input__chevronDown}><ChevronDown/></div>
         </form>
         <div className={styles.filter__buttons}>
-          <button className={styles.buttons__button} type="button">Clear filter</button>
+          <button className={styles.buttons__button} type="button" onClick={clearFilter}>Clear filter</button>
           <Link to='/search'>
             <button className={styles.buttons__button} type="button" onClick={showResults}>Show results</button>
           </Link>
